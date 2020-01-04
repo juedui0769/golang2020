@@ -91,7 +91,14 @@ v, ok := x.(T)
 |---|---|
 |1|`delete`|
 
+### 函数
 
+```
+func Module(x, y int) (result int) {
+    result = x % y
+    return
+}
+```
 
 
 
