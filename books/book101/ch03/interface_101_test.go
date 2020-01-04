@@ -27,3 +27,21 @@ func Test101(t *testing.T) {
 		t.Log("False")
 	}
 }
+
+func (self SortableStrings) Sort() {
+	sort.Sort(self)
+}
+
+type Sortable interface {
+	sort.Interface
+	Sort()
+}
+
+func Test102(t *testing.T) {
+	_, ok := interface{}(SortableStrings{}).(Sortable)
+	if ok {
+		t.Log("True")
+	} else {
+		t.Log("False")
+	}
+}
