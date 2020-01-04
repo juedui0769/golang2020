@@ -6,15 +6,26 @@ import (
 )
 
 func DoSomething(p interface{}){
-	if i, ok := p.(int); ok{
-		fmt.Println("Integer", i)
-		return
+	//if i, ok := p.(int); ok{
+	//	fmt.Println("Integer", i)
+	//	return
+	//}
+	//if s, ok := p.(string); ok{
+	//	fmt.Println("String", s)
+	//	return
+	//}
+	//fmt.Println("Unknow Type")
+
+	// switch 写法
+
+	switch v := p.(type) {
+	case int:
+		fmt.Println("Integer", v)
+	case string:
+		fmt.Println("String", v)
+	default:
+		fmt.Println("Unknow Type")
 	}
-	if s, ok := p.(string); ok{
-		fmt.Println("String", s)
-		return
-	}
-	fmt.Println("Unkonw Type")
 }
 
 func TestEmptyInterface(t *testing.T) {
