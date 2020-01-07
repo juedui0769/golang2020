@@ -135,3 +135,9 @@ func Module(x, y int) (result int) {
     - `v, ok := x.(string)`
 - 由接收操作符和通道类型值组成的表达式。
     - `v, ok := <-ch`
+
+### iota
+
+- D:\wxg104_Go\src\books\book101\ch03\iota_test.go
+
+
