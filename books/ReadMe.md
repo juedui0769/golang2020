@@ -162,6 +162,21 @@ func Module(x, y int) (result int) {
 - 另外，短变量声明也不需要以`var`开始。
 - 短变量声明可以出现在`if`, `for` 和 `switch` 等语句的初始化器中。
 
+### switch
+
+- 语句`switch`可以使用表达式或者类型说明符作为`case`判定方法。
+- 因此，`switch`语句也就可以被分为两类
+    - 表达式`switch`语句
+    - 类型`switch`语句
+
+- D:\wxg104_Go\src\books\book101\ch04\switch_test.go
+
+
+
+
+
+
+
 
 
 
