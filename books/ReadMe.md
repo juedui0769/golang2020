@@ -167,9 +167,10 @@ func Module(x, y int) (result int) {
 - 语句`switch`可以使用表达式或者类型说明符作为`case`判定方法。
 - 因此，`switch`语句也就可以被分为两类
     - 表达式`switch`语句
+        - `src\books\book101\ch04\switch_test.go`
     - 类型`switch`语句
-
-- D:\wxg104_Go\src\books\book101\ch04\switch_test.go
+        - `src\books\book101\ch04\switch2_test.go`
+        - `fallthrough` 语句不允许出现在类型`switch`语句中的任何`case`语句列表中。
 
 
 
