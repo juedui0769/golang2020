@@ -172,6 +172,15 @@ func Module(x, y int) (result int) {
         - `src\books\book101\ch04\switch2_test.go`
         - `fallthrough` 语句不允许出现在类型`switch`语句中的任何`case`语句列表中。
 
+-------
+
+### for
+
+- `for`子句的三个部分是有固定排列顺序的。
+    - 初始化子句在左、条件在中、后置子句在右。
+    - 并且它们之间需要用分号`;`来分隔。
+    - 可以省略掉其中的任何部分。
+- `range`
 
 
 
