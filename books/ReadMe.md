@@ -182,7 +182,34 @@ func Module(x, y int) (result int) {
     - 可以省略掉其中的任何部分。
 - `range`
 
+-------
 
+### golang不支持参数默认值
+
+- 参考: <https://www.zhihu.com/question/24368980> , 知乎
+- 参考: <https://cloud.tencent.com/developer/article/1453857> , 按这篇文章的说法，需要提供多个参数来代替默认值, 代码如下
+
+```go
+package default_arg_test
+import "testing"
+type Image struct{
+	width, height int
+    bgColor uint32
+}
+func NewImageWithBgColor(w, h int, bgColor uint32) *Image {
+    return &Image{width: w, height: h, bgColor: bgColor}
+}
+func NewImage(w, h int) *Image {
+    return NewImageWithBgColor(w, h, 0xFFFFFF)
+}
+func TestGetImage(t *testing.T) {
+    image1 := NewImage(100, 100)
+    image2 := NewImageWithBgColor(120, 250, 0xFF00FF)
+    _, _ = image1, image2
+}
+```
+
+-------
 
 
 
