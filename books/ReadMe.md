@@ -211,9 +211,27 @@ func TestGetImage(t *testing.T) {
 
 -------
 
+### panic
 
+- 标准库代码中，往往都会有自己的error接口类型的实现。
+    - 只有当调用recover函数得到的结果值类型是自己定义的error类型时，才会处理这个恐慌。
+    - 否则就会重新引发一个运行时恐慌并携带相同的值。
+- 标准库代码包fmt中的Token函数处理恐慌的代码如下：
 
-
+```
+func (s *ss) Token(skipSpace bool, f func(rune) bool) (tok []byte, err error) {
+    defer func() {
+        if e := recover(); e != nil {
+            if se, ok := e.(scanError); ok {
+                err = se.err
+            } else {
+                panic(e)
+            }
+        }
+    }()
+    // 省略若干条语句 
+}
+```
 
 
 
