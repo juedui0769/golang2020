@@ -106,11 +106,78 @@ type Set interface {
 	String() string
 }
 
+// 判断集合 one 是否是集合 other 的超集
+func IsSuperset(one Set, other Set) bool {
+	if one == nil || other == nil {
+		return false
+	}
+	oneLen := one.Len()
+	otherLen := other.Len()
+	if oneLen == 0 || oneLen == otherLen {
+		return false
+	}
+	if oneLen > 0 && otherLen == 0 {
+		return true
+	}
+	for _, v := range other.Elements() {
+		if !one.Contains(v) {
+			return false
+		}
+	}
+	return true
+}
 
+// 私有
+func checkAndReturn(one Set, other Set) Set {
+	set := NewHashSet()
+	if one == nil && other == nil {
+		return set
+	}
+	if one == nil {
+		return other
+	}
+	if other == nil {
+		return one
+	}
+	return set
+}
 
+// 并集
+func Union(one Set, other Set) Set{
+	set := checkAndReturn(one, other)
+	for _, val := range one.Elements() {
+		set.Add(val)
+	}
+	for _, val := range other.Elements() {
+		set.Add(val)
+	}
+	return set
+}
 
+// 交集
+func Intersect(one Set, other Set) Set {
+	set := checkAndReturn(one, other)
+	for _, val := range one.Elements() {
+		if other.Contains(val) {
+			set.Add(val)
+		}
+	}
+	return set
+}
 
+// 差集
+func Difference(one Set, other Set) Set {
+	set := checkAndReturn(one, other)
+	for _, val := range one.Elements() {
+		if !other.Contains(val) {
+			set.Add(val)
+		}
+	}
+	return set
+}
 
-
-
+// 对称差集
+func SymmetricDifference(one Set, other Set) Set {
+	return nil
+}
 
