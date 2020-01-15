@@ -39,7 +39,7 @@ func (set *HashSet) Len() int {
 	return len(set.m)
 }
 
-func (set *HashSet) Same(other *HashSet) bool {
+func (set *HashSet) Same(other Set) bool {
 	if other == nil {
 		return false
 	}
@@ -87,5 +87,30 @@ func (set *HashSet) String() string {
 	buf.WriteString("}")
 	return buf.String()
 }
+
+//func (set *HashSet) IsSuperset(other *HashSet) bool {
+//	if other == nil {
+//		return false
+//	}
+//	oneLen := one
+//}
+
+type Set interface {
+	Add(e interface{}) bool
+	Remove(e interface{})
+	Clear()
+	Contains(e interface{}) bool
+	Len() int
+	Same(other Set) bool
+	Elements() []interface{}
+	String() string
+}
+
+
+
+
+
+
+
 
 
