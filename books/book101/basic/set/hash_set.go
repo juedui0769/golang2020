@@ -127,6 +127,11 @@ func IsSuperset(one Set, other Set) bool {
 	return true
 }
 
+// -------------------
+// 以下是自己的写的
+// 参考书中代码 <https://github.com/hyper0x/goc2p> 没觉得写得多好
+// 如果使用时最好使用官方的，或者公开库中的订阅高的。
+
 // 私有
 func checkAndReturn(one Set, other Set) Set {
 	set := NewHashSet()
@@ -157,11 +162,20 @@ func Union(one Set, other Set) Set{
 // 交集
 func Intersect(one Set, other Set) Set {
 	set := checkAndReturn(one, other)
-	for _, val := range one.Elements() {
-		if other.Contains(val) {
-			set.Add(val)
+	if one.Len() < other.Len() {
+		for _, val := range one.Elements() {
+			if other.Contains(val) {
+				set.Add(val)
+			}
+		}
+	} else {
+		for _, val := range other.Elements() {
+			if one.Contains(val) {
+				set.Add(val)
+			}
 		}
 	}
+
 	return set
 }
 
