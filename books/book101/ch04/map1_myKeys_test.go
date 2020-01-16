@@ -2,6 +2,7 @@ package ch04
 
 import (
 	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -41,4 +42,28 @@ func (keys *myKeys) Less(i, j int) bool {
 func (keys *myKeys) Swap(i, j int) {
 	keys.container[i], keys.container[j] = keys.container[j], keys.container[i]
 }
+
+func (keys *myKeys) isAcceptableElem(k interface{}) bool {
+	if k == nil {
+		return false
+	}
+	if reflect.TypeOf(k) != keys.elemType {
+		return false
+	}
+	return true
+}
+
+func (keys *myKeys) Add(k interface{}) bool {
+	ok := keys.isAcceptableElem(k)
+	if !ok {
+		return false
+	}
+	keys.container = append(keys.container, k)
+	sort.Sort(keys)
+	return true
+}
+
+
+
+
 
