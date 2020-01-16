@@ -30,5 +30,15 @@ func TestMyKeys01(t *testing.T) {
 	_ = int64Keys
 }
 
+func (keys *myKeys) Len() int {
+	return len(keys.container)
+}
 
+func (keys *myKeys) Less(i, j int) bool {
+	return keys.compareFunc(keys.container[i], keys.container[j]) == -1
+}
+
+func (keys *myKeys) Swap(i, j int) {
+	keys.container[i], keys.container[j] = keys.container[j], keys.container[i]
+}
 
