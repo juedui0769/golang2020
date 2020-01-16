@@ -233,7 +233,10 @@ func (s *ss) Token(skipSpace bool, f func(rune) bool) (tok []byte, err error) {
 }
 ```
 
+### HashSet
 
+- 本地: `D:\temp2\goc2p`
+- 官方: <https://github.com/hyper0x/goc2p> ， `src/basic/set/hash_set.go`
 
 
 
