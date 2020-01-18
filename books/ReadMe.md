@@ -238,5 +238,37 @@ func (s *ss) Token(skipSpace bool, f func(rune) bool) (tok []byte, err error) {
 - 本地: `D:\temp2\goc2p`
 - 官方: <https://github.com/hyper0x/goc2p> ， `src/basic/set/hash_set.go`
 
+### 测试
+
+测试文件必须以`_test.go`结尾
+
+- 功能测试
+    - 以`TestXxx`命名
+- 基准测试
+    - 没看懂
+- 样本测试
+    - 以`ExampleXxx`命名
+    - 另外还可以添加形如`// Output: xxx`的注释行。
+    - 命名规范还很多哦。`Example`, `ExampleF`, `ExampleT`, `ExampleT_M`, `ExampleT_M_basic`
+- 收集资源使用情况
+    - `-cpuprofile cpu.out`
+    - `-memprofile mem.out`
+    - `-memprofilerate n`
+    - 比如: `go test -cpuprofile cpu.out net` 运行标准库的net代码包中的测试，记录CPU使用情况，并写入到cpu.out文件中。
+- 记录程序阻塞事件
+    - `-blockprofile block.out`
+    - `-blockprofilerate n`
+- 测试覆盖率
+    - `-cover`
+    - `-covermode=set` : `set`, `count`, `atomic`
+    - `-coverpkg bufio,net`
+    - `-coverprofile cover.out`
+
+### 程序文档
+
+
+
+
+
 
 
