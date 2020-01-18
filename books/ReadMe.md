@@ -10,6 +10,8 @@
 
 <https://github.com/hyper0x/goc2p> ， 本书源码
 
+ 本地: `D:\temp2\goc2p`
+
 ### 类型
 
 **基本类型**也可以称为预定义类型
