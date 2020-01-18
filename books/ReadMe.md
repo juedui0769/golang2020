@@ -266,7 +266,11 @@ func (s *ss) Token(skipSpace bool, f func(rune) bool) (tok []byte, err error) {
 
 ### 程序文档
 
-
+- `godoc -http=:9090 -index`
+    - 使用上面命令可以在本地搭建一个Web服务，用于查看本机所有工作区中的所有代码包文档。
+- 程序注释： 类似java的单行注释和多行注释
+- 代码包的注释
+    - 当前代码包目录下的`doc.go`文件中。
 
 
 
