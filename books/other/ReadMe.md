@@ -28,7 +28,10 @@ D:\golang\lib\;D:\wxg104_Go\
 - 目前我的工作目录在`D:\wxg104_Go\`, 从github下载的第三方包在`D:\golang\lib\`下
 - 然后，导入报错，但是重启GoLand可以解决。目前没有找到更好的办法。
 
-
+### 常用的依赖管理工具
+- godep: github.com/tools/godep
+- glide: github.com/Masterminds/glide
+- dep: github.com/golang/dep
 
 
 
