@@ -35,4 +35,22 @@ func TestCounterThreadSafe(t *testing.T) {
 	t.Logf("counter = %d", counter)
 }
 
-
+func TestCounterWaitGroup(t *testing.T) {
+	var mut sync.Mutex
+	var waitGroup sync.WaitGroup
+	counter := 0
+	for i := 0; i < 5000; i++ {
+		waitGroup.Add(1)
+		go func() {
+			defer func() {
+				mut.Unlock()
+			}()
+			mut.Lock()
+			counter++
+			waitGroup.Done()
+		}()
+	}
+	//time.Sleep(1 * time.Second)
+	waitGroup.Wait()
+	t.Logf("counter = %d", counter)
+}
