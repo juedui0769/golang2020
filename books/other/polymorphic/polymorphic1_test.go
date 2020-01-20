@@ -28,6 +28,9 @@ func writeFirstProgram(p Programmer) {
 }
 
 func TestPolymorphic01(t *testing.T) {
-
+	goProgrammer := new(GoProgrammer)
+	javaProgrammer := new(JavaProgrammer)
+	writeFirstProgram(goProgrammer)
+	writeFirstProgram(javaProgrammer)
 }
 
