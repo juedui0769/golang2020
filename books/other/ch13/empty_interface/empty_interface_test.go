@@ -15,6 +15,13 @@ func DoSomething(p interface{}) {
 		return
 	}
 	fmt.Println("Unkown Type")
+
+
+	// fmt.Println(p.(type))
+	// 上面的语句不能直接打印, 否则会报错
+	// Use of .(type) outside type switch
+
+
 }
 
 func TestEmptyInterface01(t *testing.T) {
