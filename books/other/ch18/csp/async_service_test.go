@@ -23,7 +23,8 @@ func TestService(t *testing.T) {
 }
 
 func AsyncService() chan string {
-	retCh := make(chan string)
+	//retCh := make(chan string)
+	retCh := make(chan string, 1) // 使用这条语句将声明"buffer chan",是更高效的方式,不会导致阻塞
 	go func() {
 		ret := service()
 		fmt.Println(">> returned result.")
