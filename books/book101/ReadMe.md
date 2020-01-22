@@ -273,6 +273,39 @@ func (s *ss) Token(skipSpace bool, f func(rune) bool) (tok []byte, err error) {
     - 当前代码包目录下的`doc.go`文件中。
 
 
+### Goroutine
+
+不要用共享内存的方式通信。作为替代，应该以通信作为手段来共享内存。
+
+Go语言不推荐以共享内存区的方式传递数据。作为替代，我们应该优先使用Channel。
+
+Channel主要被用来在多个Goroutine之间传递数据，并且还会保证其过程的同步。
+
+|缩写|代表|含义|
+|---|---|---|
+|M|Machine|代表了一个内核线程。|
+|P|Processor|代表了M所需的上下文环境。|
+|G|Goroutine|代表了对一段需要被并发执行的Go语言代码的封装。|
+
+**M、P和G的容器**
+
+|中文名称|源码中的名称|作用域|简要说明|
+|---|---|---|---|
+|全局M列表|runtime.allm|运行时系统|存放所有M的列表|
+|全局P列表|runtime.allp|运行时系统|存放所有P的列表|
+|全局G列表|runtime.allg|运行时系统|存放所有G的列表|
+|调度器的空闲M列表|runtime.sched.midle|调度器|存放空闲M的列表|
+|调度器的空闲P列表|runtime.sched.pidle|调度器|存放空闲P的列表|
+|调度器的可运行G队列|runtime.sched.runq|调度器|存放可运行G的队列|
+|调度器的自由G列表|runtime.sched.gfree|调度器|存放自由G的列表|
+|P的可运行G队列|runq|本地P|存放当前P中的可运行G的队列|
+|P的自由G列表|gfree|本地P|存放当前P中的自由G的列表|
+
+
+
+
+
+
 
 
 
