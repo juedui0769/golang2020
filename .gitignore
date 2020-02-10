@@ -2,3 +2,5 @@
 *.exe
 github.com/
 golang.org/
+*.syso
+
