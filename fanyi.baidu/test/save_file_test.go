@@ -60,19 +60,6 @@ func TestReadFile(t *testing.T) {
 	} else {
 		t.Log("lines is null")
 	}
-	//if util.IfFileExist(file) {
-	//	byteContent, err := ioutil.ReadFile(file)
-	//	if err == nil {
-	//		//t.Log(string(byteContent))
-	//		strContent  := string(byteContent)
-	//		strArr := strings.Split(strContent, "\n")
-	//		for index, str := range strArr {
-	//			t.Logf("%d : %s", index, strings.TrimSpace(str))
-	//		}
-	//	}
-	//} else {
-	//	t.Log("文件不存在")
-	//}
 }
 
 // 参考，谢孟军，7.5文件操作
@@ -83,17 +70,5 @@ func TestWriteFile(t *testing.T){
 		"app_id:     20200224000270740",
 		"secret_key: ah9YpW6KBz0gXJJOfddd",
 	}
-	//lines = nil
 	util.WriteLines(filename, lines)
-	//if !util.IfFileExist(filepath) {
-	//	file, err := os.Create(filepath)
-	//	defer file.Close()
-	//	if err != nil {
-	//		log.Fatal(err)
-	//	}
-	//	file.WriteString("hello,\r\n")
-	//	file.WriteString("world\r\n")
-	//	//os.ModeAppend
-	//	//io.WriteString()
-	//}
 }
