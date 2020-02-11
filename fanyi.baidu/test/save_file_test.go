@@ -33,10 +33,67 @@ func TestSystemPath(t *testing.T) {
 	t.Log(curr)
 }
 
+// 文件是否存在
+// https://www.jianshu.com/p/93772ececf65
 func TestFileExist(t *testing.T) {
-
+	info, err := os.Stat(util.GetCurrFileDir()+"/fanyi.baidu.conf")
+	if err != nil {
+		log.Fatal(err)
+	}
+	t.Log(info)
 }
 
+func TestFileExist01(t *testing.T) {
+	file := util.GetCurrFileDir() + "/" + util.FANYI_BAIDU_CONFIG_FILE
+	flag := util.IfFileExist(file)
+	t.Log(flag)
+}
 
+// 读取文件
+func TestReadFile(t *testing.T) {
+	file := util.GetCurrFileDir() + "/" + util.FANYI_BAIDU_CONFIG_FILE
+	lines := util.ReadLines(file)
+	if lines != nil {
+		for index, line := range lines {
+			t.Logf("%d: %s\n", index, line)
+		}
+	} else {
+		t.Log("lines is null")
+	}
+	//if util.IfFileExist(file) {
+	//	byteContent, err := ioutil.ReadFile(file)
+	//	if err == nil {
+	//		//t.Log(string(byteContent))
+	//		strContent  := string(byteContent)
+	//		strArr := strings.Split(strContent, "\n")
+	//		for index, str := range strArr {
+	//			t.Logf("%d : %s", index, strings.TrimSpace(str))
+	//		}
+	//	}
+	//} else {
+	//	t.Log("文件不存在")
+	//}
+}
 
-
+// 参考，谢孟军，7.5文件操作
+func TestWriteFile(t *testing.T){
+	filename := util.GetCurrFileDir() + "/" + util.FANYI_BAIDU_CONFIG_FILE
+	t.Log(filename)
+	lines := []string{
+		"app_id:     20200224000270740",
+		"secret_key: ah9YpW6KBz0gXJJOfddd",
+	}
+	//lines = nil
+	util.WriteLines(filename, lines)
+	//if !util.IfFileExist(filepath) {
+	//	file, err := os.Create(filepath)
+	//	defer file.Close()
+	//	if err != nil {
+	//		log.Fatal(err)
+	//	}
+	//	file.WriteString("hello,\r\n")
+	//	file.WriteString("world\r\n")
+	//	//os.ModeAppend
+	//	//io.WriteString()
+	//}
+}
