@@ -3,16 +3,32 @@ package test
 import (
 	"fanyi.baidu/baidu"
 	"fanyi.baidu/baidu/user"
-	"math/rand"
 	"testing"
 )
 
+var userInfo = user.UserInfo{"2015063000000001", "12345678"}
+
 func TestBaiduFanyiInput_GenSign(t *testing.T) {
-	userInfo := user.UserInfo{"123", "456"}
+
 	input := baidu.BaiduFanyiInput{"apple", "en",
-		"zh", userInfo.AppId, string(rand.Intn(100000)), ""}
+		"zh", "", "1435660288", ""}
 
 	sign := input.GenSign(userInfo)
-	input.Sign = sign
+
 	t.Log(sign)
+	t.Log(input)
+}
+
+func TestBaiduFanyiInput_GenQueryStr(t *testing.T) {
+
+	input := baidu.NewBaiduFanyiInput("apple", "en", "zh", userInfo)
+	q := input.GenQueryStr()
+	t.Log(input)
+	t.Log(q)
+}
+
+func TestBaiduFanyiInput_GenQueryUrl(t *testing.T) {
+	input := baidu.NewBaiduFanyiInput("apple", "en", "zh", userInfo)
+	t.Log(input)
+	t.Log(input.GenQueryUrl())
 }
