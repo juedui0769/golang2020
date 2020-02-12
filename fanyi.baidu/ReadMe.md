@@ -19,5 +19,11 @@ D:\golang\lib\src\github.com\akavel\rsrc\rsrc.exe -manifest main.manifest -o mai
 
 - 此 `syso` 文件可以复用。
 
+### 先做一个命令行的程序
+
+- （1）先做一个命令行的程序
+- （2）未来可以期待下web程序
+- （3）最后是gui桌面程序
+
 
 
