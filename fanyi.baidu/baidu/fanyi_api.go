@@ -1,6 +1,9 @@
 package baidu
 
-import "fanyi.baidu/util"
+import (
+	"fanyi.baidu/baidu/user"
+	"fanyi.baidu/util"
+)
 
 type BaiduFanyiInput struct {
 	// Query+From+To+AppId+Salt+Sign
@@ -16,7 +19,7 @@ type BaiduFanyiInput struct {
 }
 
 // 生成签名
-func (b *BaiduFanyiInput) GenSign(info UserInfo) string {
+func (b *BaiduFanyiInput) GenSign(info user.UserInfo) string {
 	originStr := info.AppId + b.Query + b.Salt + info.SecretKey
 	return util.GetMd5Str(originStr)
 }

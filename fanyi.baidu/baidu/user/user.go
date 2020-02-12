@@ -1,4 +1,4 @@
-package baidu
+package user
 
 type UserInfo struct {
 	// 首字母需要大写，否则包外无法使用

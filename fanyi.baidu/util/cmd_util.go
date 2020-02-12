@@ -1,7 +1,7 @@
 package util
 
 import (
-	"fanyi.baidu/baidu"
+	"fanyi.baidu/baidu/user"
 	"fmt"
 	"strings"
 )
@@ -48,11 +48,11 @@ func canYouUpdate() bool {
 }
 
 // 保存信息到文件
-func saveUserInfo(filename string, userInfo baidu.UserInfo) {
+func saveUserInfo(filename string, userInfo user.UserInfo) {
 	var userInfoLines []string
 
-	userInfoLines = append(userInfoLines, fmt.Sprintf("%s:%s", baidu.APP_ID, userInfo.AppId))
-	userInfoLines = append(userInfoLines, fmt.Sprintf("%s:%s", baidu.SECRET_KEY, userInfo.SecretKey))
+	userInfoLines = append(userInfoLines, fmt.Sprintf("%s:%s", user.APP_ID, userInfo.AppId))
+	userInfoLines = append(userInfoLines, fmt.Sprintf("%s:%s", user.SECRET_KEY, userInfo.SecretKey))
 
 	// 写入到文件
 	WriteLines(filename, userInfoLines)
@@ -61,20 +61,20 @@ func saveUserInfo(filename string, userInfo baidu.UserInfo) {
 
 // 从配置文件中获取用户信息
 // 从当前目录下的""文件读取配置信息
-func getUserInfoFromConf() (baidu.UserInfo, bool) {
+func getUserInfoFromConf() (user.UserInfo, bool) {
 
 	lines := ReadLines(filename)
 
-	var userInfo baidu.UserInfo
+	var userInfo user.UserInfo
 	ok := true
 
 	if lines != nil {
 		for _, line := range lines {
 			arr := strings.Split(line, ":")
-			if strings.TrimSpace(arr[0]) == baidu.APP_ID {
+			if strings.TrimSpace(arr[0]) == user.APP_ID {
 				userInfo.AppId = strings.TrimSpace(arr[1])
 			}
-			if strings.TrimSpace(arr[0]) == baidu.SECRET_KEY {
+			if strings.TrimSpace(arr[0]) == user.SECRET_KEY {
 				userInfo.SecretKey = strings.TrimSpace(arr[1])
 			}
 		}
@@ -103,9 +103,9 @@ func getUserInfoFromInputV2() []string {
 }
 
 // 返回结构体
-func getUserInfoFromInputV3() baidu.UserInfo {
+func getUserInfoFromInputV3() user.UserInfo {
 	appId, secretKey := getUserInfoFromInput()
-	return baidu.UserInfo{appId, secretKey}
+	return user.UserInfo{appId, secretKey}
 }
 
 
