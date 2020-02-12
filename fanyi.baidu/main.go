@@ -4,11 +4,17 @@
 
 package main
 
-import "fmt"
+import (
+	"fanyi.baidu/util"
+	"fmt"
+)
 
 func main() {
-	testCmdInputV1()
+	util.MakeBaiduFanyiInvokeUrl()
 }
+
+
+
 
 func testCmdInputV1() {
 	appId := ""

@@ -66,6 +66,8 @@ func ReadLines(filename string) (lines []string) {
 
 // 写入文件
 // 传入文件名（完整路径），和要写入的内容（切片类型）
+// (1) 文件不存在时，创建
+// (2*) 文件存在时，覆盖更新
 func WriteLines(filename string, lines []string) {
 	if lines == nil {
 		log.Fatal("请传入要写入的文件内容")

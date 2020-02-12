@@ -1,7 +1,9 @@
 package test
 
 import (
+	"fanyi.baidu/baidu"
 	"fanyi.baidu/util"
+	"fmt"
 	"log"
 	"os"
 	"os/user"
@@ -67,8 +69,8 @@ func TestWriteFile(t *testing.T){
 	filename := util.GetCurrFileDir() + "/" + util.FANYI_BAIDU_CONFIG_FILE
 	t.Log(filename)
 	lines := []string{
-		"app_id:     2020022400027074111",
-		"secret_key: ah9YpW6KBz0gXJJOfeee",
+		fmt.Sprintf("%s:%s", baidu.APP_ID, "2020022400027074111"),
+		fmt.Sprintf("%s:%s", baidu.SECRET_KEY, "ah9YpW6KBz0gXJJOfeee"),
 	}
 	util.WriteLines(filename, lines)
 }
