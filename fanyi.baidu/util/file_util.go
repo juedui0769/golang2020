@@ -1,15 +1,18 @@
 package util
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"os/user"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 const FANYI_BAIDU_CONFIG_FILE string = "fanyi.baidu.conf"
+const FANYI_BAIDU_LOG_FILE string = "fanyi.baidu.log.txt"
 
 // 获得当前目录
 func GetCurrFileDir() string {
@@ -103,6 +106,37 @@ func writeLines(file *os.File, lines []string) {
 	}
 }
 
+// 追加内容到文件
+func AppendContent(filename string, content string) {
+
+	// 如果文件不存在，创建文件，写入内容
+	if !IfFileExist(filename) {
+		file, err := os.Create(filename)
+		defer file.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+		appendContent(file, content)
+	} else {
+		// 如果文件存在，应该更新文件内容
+		// 0777表示：创建了一个普通文件，所有人拥有所有的读、写、执行权限
+		// 0666表示：创建了一个普通文件，所有人拥有对该文件的读、写权限，但是都不可执行
+		// 0644表示：创建了一个普通文件，文件所有者对该文件有读写权限，用户组和其他人只有读权限，都没有执行权限
+		file, err := os.OpenFile(filename, os.O_APPEND, 0666)
+		defer file.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+		appendContent(file, content)
+	}
+	fmt.Printf("filename:%s\n", filename)
+}
+
+// 私有方法
+func appendContent(file *os.File, content string) {
+	file.WriteString(time.Now().Local().String() + "\r\n")
+	file.WriteString(content + "\r\n")
+}
 
 
 

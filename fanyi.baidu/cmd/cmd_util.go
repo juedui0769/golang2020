@@ -9,7 +9,9 @@ import (
 )
 
 // 配置文件限定为当前目录下的文件
-var filename string = util.GetCurrFileDir() + "/" + util.FANYI_BAIDU_CONFIG_FILE
+var configFileName string = util.GetCurrFileDir() + "/" + util.FANYI_BAIDU_CONFIG_FILE
+
+var logFileName string = util.GetCurrFileDir() + "/" + util.FANYI_BAIDU_LOG_FILE
 
 func MakeBaiduFanyiInvokeUrl() {
 
@@ -22,16 +24,30 @@ func MakeBaiduFanyiInvokeUrl() {
 		// 从键盘读取信息
 		userInfo = getUserInfoFromInputV3()
 		// 写入到文件
-		saveUserInfo(filename, userInfo)
+		saveUserInfo(configFileName, userInfo)
 	}
 
-	input := baidu.NewBaiduFanyiInput("apple", "en", "zh", userInfo)
+	q, from, to := getWordInfoFromInput()
+	input := baidu.NewBaiduFanyiInput(q, from, to, userInfo)
 	genUrl := input.GenQueryUrl()
 
+	//写入到文件
+	util.AppendContent(logFileName, genUrl)
+	//输出到控制台
 	fmt.Println(genUrl)
 }
 
-
+// 从键盘获取单词信息（单词，源语言，目标语言）
+func getWordInfoFromInput() (string, string, string){
+	var q, from, to string
+	fmt.Print("请输入单词(q): ")
+	fmt.Scanf("%s", &q)
+	fmt.Print("请输入源语言(from): ")
+	fmt.Scanf("%s", &from)
+	fmt.Print("请输入目标语言(to): ")
+	fmt.Scanf("%s", &to)
+	return q, from, to
+}
 
 // 是否更新信息
 func canYouUpdate() bool {
@@ -65,7 +81,7 @@ func saveUserInfo(filename string, userInfo user.UserInfo) {
 // 从当前目录下的""文件读取配置信息
 func getUserInfoFromConf() (user.UserInfo, bool) {
 
-	lines := util.ReadLines(filename)
+	lines := util.ReadLines(configFileName)
 
 	var userInfo user.UserInfo
 	ok := true

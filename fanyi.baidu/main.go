@@ -11,6 +11,8 @@ import (
 
 func main() {
 	cmd.MakeBaiduFanyiInvokeUrl()
+	fmt.Print("按回车键退出")
+	fmt.Scanf("%s")
 }
 
 
