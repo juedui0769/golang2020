@@ -5,12 +5,12 @@
 package main
 
 import (
-	"fanyi.baidu/util"
+	"fanyi.baidu/cmd"
 	"fmt"
 )
 
 func main() {
-	util.MakeBaiduFanyiInvokeUrl()
+	cmd.MakeBaiduFanyiInvokeUrl()
 }
 
 

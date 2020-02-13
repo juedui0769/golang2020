@@ -1,13 +1,15 @@
-package util
+package cmd
 
 import (
+	"fanyi.baidu/baidu"
 	"fanyi.baidu/baidu/user"
+	"fanyi.baidu/util"
 	"fmt"
 	"strings"
 )
 
 // 配置文件限定为当前目录下的文件
-var filename string = GetCurrFileDir() + "/" + FANYI_BAIDU_CONFIG_FILE
+var filename string = util.GetCurrFileDir() + "/" + util.FANYI_BAIDU_CONFIG_FILE
 
 func MakeBaiduFanyiInvokeUrl() {
 
@@ -23,10 +25,10 @@ func MakeBaiduFanyiInvokeUrl() {
 		saveUserInfo(filename, userInfo)
 	}
 
+	input := baidu.NewBaiduFanyiInput("apple", "en", "zh", userInfo)
+	genUrl := input.GenQueryUrl()
 
-
-	//userInfo := getUserInfoFromInputV3()
-	//fmt.Printf("\n----------\nappId: %s, secretKey: %s", userInfo.AppId, userInfo.SecretKey)
+	fmt.Println(genUrl)
 }
 
 
@@ -55,7 +57,7 @@ func saveUserInfo(filename string, userInfo user.UserInfo) {
 	userInfoLines = append(userInfoLines, fmt.Sprintf("%s:%s", user.SECRET_KEY, userInfo.SecretKey))
 
 	// 写入到文件
-	WriteLines(filename, userInfoLines)
+	util.WriteLines(filename, userInfoLines)
 }
 
 
@@ -63,7 +65,7 @@ func saveUserInfo(filename string, userInfo user.UserInfo) {
 // 从当前目录下的""文件读取配置信息
 func getUserInfoFromConf() (user.UserInfo, bool) {
 
-	lines := ReadLines(filename)
+	lines := util.ReadLines(filename)
 
 	var userInfo user.UserInfo
 	ok := true
