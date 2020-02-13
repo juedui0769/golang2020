@@ -5,6 +5,7 @@ import (
 	"fanyi.baidu/baidu/user"
 	"fanyi.baidu/util"
 	"fmt"
+	"myhello/input"
 	"strings"
 )
 
@@ -39,22 +40,26 @@ func MakeBaiduFanyiInvokeUrl() {
 
 // 从键盘获取单词信息（单词，源语言，目标语言）
 func getWordInfoFromInput() (string, string, string){
-	var q, from, to string
-	fmt.Print("请输入单词(q): ")
-	fmt.Scanf("%s", &q)
-	fmt.Print("请输入源语言(from): ")
-	fmt.Scanf("%s", &from)
-	fmt.Print("请输入目标语言(to): ")
-	fmt.Scanf("%s", &to)
+	//var q, from, to string
+	//fmt.Print("请输入单词(q): ")
+	//fmt.Scanf("%s", &q)
+	//fmt.Print("请输入源语言(from): ")
+	//fmt.Scanf("%s", &from)
+	//fmt.Print("请输入目标语言(to): ")
+	//fmt.Scanf("%s", &to)
+	q := input.ReadStdin("请输入单词(q)")
+	from := input.ReadStdin("请输入源语言(from)")
+	to := input.ReadStdin("请输入目标语言(to)")
 	return q, from, to
 }
 
 // 是否更新信息
 func canYouUpdate() bool {
-	var inputStr string
+	//var inputStr string
 	flag := false
-	fmt.Print("是否更新信息(Y/N): ")
-	fmt.Scanf("%s", &inputStr)
+	//fmt.Print("是否更新信息(Y/N): ")
+	//fmt.Scanf("%s", &inputStr)
+	inputStr := input.ReadStdin("是否更新信息(Y/N)")
 	inputStr = strings.ToUpper(inputStr)
 	if inputStr == "Y" {
 		flag = true
@@ -106,11 +111,13 @@ func getUserInfoFromConf() (user.UserInfo, bool) {
 // -----------------------------
 // 从键盘输入获取用户信息（appId, secretKey）
 func getUserInfoFromInput() (string, string) {
-	var appId, secretKey string
-	fmt.Print("请输入app_id: ")
-	fmt.Scanf("%s", &appId)
-	fmt.Print("请输入secret_key: ")
-	fmt.Scanf("%s", &secretKey)
+	//var appId, secretKey string
+	//fmt.Print("请输入app_id: ")
+	//fmt.Scanf("%s", &appId)
+	//fmt.Print("请输入secret_key: ")
+	//fmt.Scanf("%s", &secretKey)
+	appId := input.ReadStdin("请输入app_id")
+	secretKey := input.ReadStdin("请输入secret_key")
 	return appId, secretKey
 }
 

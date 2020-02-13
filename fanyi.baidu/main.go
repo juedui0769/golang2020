@@ -7,12 +7,14 @@ package main
 import (
 	"fanyi.baidu/cmd"
 	"fmt"
+	"myhello/input"
 )
 
 func main() {
 	cmd.MakeBaiduFanyiInvokeUrl()
-	fmt.Print("按回车键退出")
-	fmt.Scanf("%s")
+	//fmt.Print("按回车键退出")
+	//fmt.Scanf("%s")
+	input.ReadStdin("按回车键退出")
 }
 
 
